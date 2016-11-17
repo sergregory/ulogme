@@ -12,7 +12,8 @@ waittime="2" # number of seconds between executions of loop
 maxtime="600" # if last write happened more than this many seconds ago, write even if no window title changed
 #------------------------------
 
-mkdir -p logs
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+mkdir -p "${DIR}/logs"
 last_write="0"
 lasttitle=""
 while true
@@ -60,9 +61,9 @@ do
 	# log window switch if appropriate
 	if [ "$perform_write" = true ]; then 
 		# number of seconds elapsed since Jan 1, 1970 0:00 UTC
-		logfile="logs/window_$(python rewind7am.py).txt"
+		logfile="${DIR}/logs/window_$(python ${DIR}/rewind7am.py).txt"
 		echo "$T $curtitle" >> $logfile
-		echo "logged window title: $(date) $curtitle into $logfile"
+		# echo "logged window title: $(date) $curtitle into $logfile"
 		last_write=$T
 	fi
 
