@@ -8,7 +8,7 @@ LANG=en_US.utf8
 # (with 2 second frequency check time), or every 10 minutes if 
 # no changes occur.
 
-waittime="2" # number of seconds between executions of loop
+waittime="0.5" # number of seconds between executions of loop
 maxtime="600" # if last write happened more than this many seconds ago, write even if no window title changed
 #------------------------------
 
@@ -33,7 +33,7 @@ do
 		islocked=$(qdbus org.kde.screensaver /ScreenSaver org.freedesktop.ScreenSaver.GetActive)
 	else
 		# If we can't find the screensaver, assume it's missing.
-		islocked=false
+		islocked=true
 	fi
 
 	if [ $islocked = true ]; then
